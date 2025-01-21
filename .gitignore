@@ -1,0 +1,12 @@
+# Ignore Terraform directories
+.terraform/
+
+# Ignore binaries
+*.exe
+
+# Ignore sensitive files
+*.tfstate
+*.tfstate.backup
+.terraform/
+*.exe
+.terraform*
