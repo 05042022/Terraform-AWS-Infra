@@ -1,12 +1,12 @@
-## variables
-
+## ✅ AWS REGION
 variable "region" {
-  default = "eu-west-3"
   description = "AWS region code"
+  type        = string
+  default     = "eu-west-3"
 }
 
-# VPC Variables
-variable "vpc_cidr_block" {
+# ✅ VPC Variables
+variable "my_vpc_cidr_block" {
   description = "The CIDR block for the VPC."
   type        = string
   default     = "10.0.0.0/16"
@@ -15,7 +15,7 @@ variable "vpc_cidr_block" {
 variable "vpc_name" {
   description = "The name of the VPC."
   type        = string
-  default     = "my-vpc"
+  default     = "my_vpc"
 }
 
 variable "vpc_purpose" {
@@ -25,57 +25,55 @@ variable "vpc_purpose" {
 }
 
 # Public Subnets Variables
-variable "public_subnet_1_cidr" {
+variable "public-subnet1_cidr" {
   description = "The CIDR block for the first public subnet."
   type        = string
   default     = "10.0.0.0/24"
 }
-
-variable "public_subnet_1_availability_zone" {
+variable "public-subnet1_availability_zone" {
   description = "The availability zone for the first public subnet."
   type        = string
   default     = "eu-west-3a"
 }
 
-variable "public_subnet_2_cidr" {
+variable "public-subnet2_cidr" {
   description = "The CIDR block for the second public subnet."
   type        = string
   default     = "10.0.1.0/24"
 }
 
-variable "public_subnet_2_availability_zone" {
+variable "public-subnet2_availability_zone" {
   description = "The availability zone for the second public subnet."
   type        = string
-  default     = "eu-west-3a"
+  default     = "eu-west-3b"  # ✅ FIX: Spread across different AZs for high availability
 }
 
-# Private Subnets Variables
-variable "private_subnet_1_cidr" {
+# ✅ Private Subnets Variables
+variable "private-subnet1_cidr" {
   description = "The CIDR block for the first private subnet."
   type        = string
   default     = "10.0.2.0/24"
 }
 
-variable "private_subnet_1_availability_zone" {
+variable "private-subnet1_availability_zone" {
   description = "The availability zone for the first private subnet."
   type        = string
   default     = "eu-west-3a"
 }
 
-variable "private_subnet_2_cidr" {
+variable "private-subnet2_cidr" {
   description = "The CIDR block for the second private subnet."
   type        = string
   default     = "10.0.3.0/24"
 }
 
-variable "private_subnet_2_availability_zone" {
+variable "private-subnet2_availability_zone" {
   description = "The availability zone for the second private subnet."
   type        = string
-  default     = "eu-west-3a"
+  default     = "eu-west-3b"  # ✅ FIX: Use a different AZ for HA
 }
 
-
-# Variables for Internet Gateway
+# ✅ Internet Gateway Variables
 variable "internet_gateway_name" {
   description = "The name of the Internet Gateway."
   type        = string
@@ -88,7 +86,7 @@ variable "internet_gateway_purpose" {
   default     = "to get internet connectivity to public subnet"
 }
 
-# Variables for Elastic IPs
+# ✅ Elastic IPs for NAT Gateway
 variable "eip_1_name" {
   description = "The name of the first Elastic IP."
   type        = string
@@ -101,7 +99,7 @@ variable "eip_2_name" {
   default     = "eip-2"
 }
 
-# Variables for NAT Gateways
+# ✅ NAT Gateway Variables
 variable "nat_gateway_1_name" {
   description = "The name of the first NAT Gateway."
   type        = string
@@ -109,9 +107,8 @@ variable "nat_gateway_1_name" {
 }
 
 variable "nat_gateway_1_subnet" {
-  description = "The ID of the public subnet for the first NAT Gateway."
+  description = "The public subnet ID for the first NAT Gateway."
   type        = string
-  default     = ""
 }
 
 variable "nat_gateway_2_name" {
@@ -121,7 +118,6 @@ variable "nat_gateway_2_name" {
 }
 
 variable "nat_gateway_2_subnet" {
-  description = "The ID of the public subnet for the second NAT Gateway."
+  description = "The public subnet ID for the second NAT Gateway."
   type        = string
-  default     = ""
 }
