@@ -9,8 +9,9 @@ on:
       - main
 
 jobs:
-  terraform:
+  terraform-init:
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
     - name: Checkout code
@@ -27,5 +28,22 @@ jobs:
     - name: Initialize Terraform (Ensure Modules are Installed)
       run: terraform init -upgrade  # Ensures modules are installed
 
-    - name: Validate Terraform Configuration
+  terraform-validate:
+    runs-on: ubuntu-latest
+    needs: terraform-init
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.5.6 # Change this to your desired Terraform version
+
+    - name: Initialize Terraform (Ensure Modules are Installed)
+      run: terraform init  # Ensures modules are installed
+
+
+    - name: terraform validate
       run: terraform validate
+
