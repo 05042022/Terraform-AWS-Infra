@@ -30,3 +30,5 @@ jobs:
 
     - name: Validate Terraform Configuration
       run: terraform validate
+      runs-on: ubuntu-latest
+      needs: init
